@@ -16,12 +16,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.happybirthday.ui.theme.HappyBirthdayTheme
+import androidx.compose.foundation.Image
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             HappyBirthdayTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    GreetingText(
+                    GreetingImage(
                         message = "Happy Birthday Sam!",
                         from = "From Emma",
                         modifier = Modifier
@@ -57,16 +59,25 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier){
             text = from,
             fontSize = 36.sp,
                 modifier = Modifier
-                .padding(16.dp)
-                .align(alignment = Alignment.End)
+                    .padding(16.dp)
+                    .align(alignment = Alignment.End)
         )
     }
+}
+
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
+    val image = painterResource(id = R.drawable.androidparty)
+    Image(
+        painter = image,
+        contentDescription = null
+    )
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     HappyBirthdayTheme {
-        GreetingText(message = "Happy Birthday Sam!", from = " From Emma")
+        GreetingImage(message = "Happy Birthday Sam!", from = " From Emma")
     }
 }
