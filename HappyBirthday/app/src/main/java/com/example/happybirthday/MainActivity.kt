@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.happybirthday.ui.theme.HappyBirthdayTheme
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.layout.ContentScale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,10 +70,19 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier){
 @Composable
 fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
     val image = painterResource(id = R.drawable.androidparty)
-    Image(
-        painter = image,
-        contentDescription = null
-    )
+    Box(Modifier){
+        Image(
+            painter = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alpha = 0.5F
+        )
+        GreetingText(
+            message = message,
+            from = from,
+            modifier = Modifier.fillMaxSize().padding(8.dp)
+        )
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
