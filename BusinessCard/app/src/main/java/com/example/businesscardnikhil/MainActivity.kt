@@ -16,12 +16,15 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -38,11 +41,9 @@ class MainActivity : ComponentActivity() {
             BusinessCardNikhilTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     BusinessCardText(
-                        name = "Android",
-                        job = "king",
+                        name = "Nikhil Nunna",
+                        job = "High School Student",
                         modifier = Modifier
-                            .padding(innerPadding)
-                            .fillMaxSize()
                     )
                 }
             }
@@ -51,11 +52,62 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun BusinessCardContactInfo(number: String, email: String, school: String, modifier: Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Bottom
+    ) {
+        Row(
+        ) {
+            Icon(
+                Icons.Default.Call,
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(start = 85.dp, top = 15.dp)
+
+            )
+            Text(
+                text = number,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(start = 2.dp, top = 15.dp)
+            )
+        }
+        Row(
+        ) {
+            Icon(
+                Icons.Default.Email,
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(start = 85.dp, top = 15.dp)
+
+            )
+            Text(
+                text = email,
+                fontSize = 19.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(top = 15.dp, end=10.dp)
+            )
+        }
+        Row(
+        ) {
+            Icon(
+                Icons.Default.Person,
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(start = 85.dp, top = 15.dp)
+
+            )
+            Text(
+                text = school,
+                fontSize = 19.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(top = 15.dp, end=10.dp)
+            )
+        }
+    }
 }
 @Composable
 fun BusinessCardText(name: String, job: String, modifier: Modifier = Modifier){
@@ -74,13 +126,10 @@ fun BusinessCardText(name: String, job: String, modifier: Modifier = Modifier){
             Image(
                 painter = image,
                 contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .width(500.dp)
+                    .width(400.dp)
                     .padding(top = 50.dp, bottom = 100.dp)
-            )
-            Icon(
-                Icons.Default.Call,
-                contentDescription = null
             )
             Text(
                 text = name,
@@ -99,6 +148,12 @@ fun BusinessCardText(name: String, job: String, modifier: Modifier = Modifier){
                     .padding(5.dp)
                     .fillMaxWidth()
             )
+            BusinessCardContactInfo(
+                "224-293-2342",
+                "nikhil.nunna9@gmail.com",
+                "nunna8021@students.d211.org",
+                Modifier
+            )
         }
     }
 }
@@ -108,5 +163,6 @@ fun BusinessCardText(name: String, job: String, modifier: Modifier = Modifier){
 fun GreetingPreview() {
     BusinessCardNikhilTheme {
         BusinessCardText("Nikhil Nunna", "High School Student")
+
     }
 }
