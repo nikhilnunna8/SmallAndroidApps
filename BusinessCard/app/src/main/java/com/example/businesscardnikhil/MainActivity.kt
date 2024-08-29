@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -52,7 +53,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun BusinessCardContactInfo(number: String, email: String, school: String, modifier: Modifier) {
+fun BusinessCardContactInfo(number: String, email: String, insta: String, modifier: Modifier) {
     Column(
         verticalArrangement = Arrangement.Bottom
     ) {
@@ -61,6 +62,7 @@ fun BusinessCardContactInfo(number: String, email: String, school: String, modif
             Icon(
                 Icons.Default.Call,
                 contentDescription = null,
+                tint = Color(40, 67, 135),
                 modifier = Modifier
                     .padding(start = 85.dp, top = 15.dp)
 
@@ -78,6 +80,7 @@ fun BusinessCardContactInfo(number: String, email: String, school: String, modif
             Icon(
                 Icons.Default.Email,
                 contentDescription = null,
+                tint = Color(40, 67, 135),
                 modifier = Modifier
                     .padding(start = 85.dp, top = 15.dp)
 
@@ -86,6 +89,7 @@ fun BusinessCardContactInfo(number: String, email: String, school: String, modif
                 text = email,
                 fontSize = 19.sp,
                 textAlign = TextAlign.Center,
+
                 modifier = Modifier
                     .padding(top = 15.dp, end=10.dp)
             )
@@ -95,12 +99,13 @@ fun BusinessCardContactInfo(number: String, email: String, school: String, modif
             Icon(
                 Icons.Default.Person,
                 contentDescription = null,
+                tint = Color(40, 67, 135),
                 modifier = Modifier
                     .padding(start = 85.dp, top = 15.dp)
 
             )
             Text(
-                text = school,
+                text = insta,
                 fontSize = 19.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
@@ -128,8 +133,8 @@ fun BusinessCardText(name: String, job: String, modifier: Modifier = Modifier){
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .width(400.dp)
-                    .padding(top = 50.dp, bottom = 100.dp)
+                    .width(450.dp)
+                    .padding(top = 50.dp, bottom = 1.dp)
             )
             Text(
                 text = name,
@@ -145,13 +150,13 @@ fun BusinessCardText(name: String, job: String, modifier: Modifier = Modifier){
                 fontSize = 20.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .padding(5.dp)
+                    .padding(bottom = 80.dp)
                     .fillMaxWidth()
             )
             BusinessCardContactInfo(
                 "224-293-2342",
                 "nikhil.nunna9@gmail.com",
-                "nunna8021@students.d211.org",
+                "@niktheeighth",
                 Modifier
             )
         }
