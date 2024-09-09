@@ -21,12 +21,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import java.io.StringReader
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,14 +51,30 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResourceId: Int) {
-    val imageResource = imageResourceId
+    var imageRes by remember { mutableStateOf(1) }
+    var random by remember {
+        mutableStateOf((3..5).random())
+    }
+    val imageResource = when(imageRes) {
+        1 -> R.drawable.lemon_tree
+        in(2..random) -> R.drawable.lemon_squeeze
+        random+1 -> R.drawable.lemon_drink
+        random+2 -> R.drawable.lemon_restart
+        random+3 -> R.drawable.lemon_tree
+        else -> {1}
+    }
+    if (imageRes > random+3){
+        imageRes = 1
+        random = (3..5).random()
+    }
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Button(
-            onClick = { /*TEST*/ },
+            onClick = {imageRes = imageRes + 1},
             shape = RoundedCornerShape(30.dp)
         )
         {
@@ -70,17 +89,16 @@ fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResource
     }
 }
 
-@Composable
-fun LemonAppFunctionality(modifier: Modifier){
-    var imageRes by remember { mutableStateOf(1) }
-    var count = 0
-    val imageResource = when(imageRes) {
-        1 -> R.drawable.lemon_tree
-        2 -> R.drawable.lemon_squeeze
-        3 -> R.drawable.lemon_drink
-        else -> R.drawable.lemon_restart
-    }
-}
+//@Composable
+//fun LemonAppFunctionality(modifier: Modifier){
+//    var imageRes by remember { mutableStateOf(1) }
+//    val imageResource = when(imageRes) {
+//        1 -> R.drawable.lemon_tree
+//        in(2..4) -> R.drawable.lemon_squeeze
+//        5 -> R.drawable.lemon_drink
+//        else -> R.drawable.lemon_restart
+//    }
+//}
 
 @Preview(showBackground = true)
 @Composable
