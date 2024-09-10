@@ -99,17 +99,6 @@ fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResource
     }
 }
 
-//@Composable
-//fun LemonAppFunctionality(modifier: Modifier){
-//    var imageRes by remember { mutableStateOf(1) }
-//    val imageResource = when(imageRes) {
-//        1 -> R.drawable.lemon_tree
-//        in(2..4) -> R.drawable.lemon_squeeze
-//        5 -> R.drawable.lemon_drink
-//        else -> R.drawable.lemon_restart
-//    }
-//}
-
 @Preview(showBackground = true)
 @Composable
 fun LemonAppPreview() {
