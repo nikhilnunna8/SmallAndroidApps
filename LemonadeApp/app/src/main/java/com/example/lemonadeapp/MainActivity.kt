@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import java.io.StringReader
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxSize(),
                         imageResourceId = R.drawable.lemon_tree,
-                        stringResourceId = R.drawable.lemon_tree
+                        stringResourceId = R.string.lemon
                     )
                 }
             }
@@ -53,7 +54,7 @@ class MainActivity : ComponentActivity() {
 fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResourceId: Int) {
     var imageRes by remember { mutableStateOf(1) }
     var random by remember {
-        mutableStateOf((3..5).random())
+        mutableStateOf((3..4).random())
     }
     val imageResource = when(imageRes) {
         1 -> R.drawable.lemon_tree
@@ -63,9 +64,17 @@ fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResource
         random+3 -> R.drawable.lemon_tree
         else -> {1}
     }
-    if (imageRes > random+3){
+    val stringResource = when(imageRes) {
+        1 -> R.string.tapLemonSelect
+        in(2..random) -> R.string.tapLemonSqueeze
+        random+1 -> R.string.tapLemonDrink
+        random+2 -> R.string.tapEmptyGlass
+        random+3 -> R.string.tapLemonSelect
+        else -> {1}
+    }
+    if (imageRes == random+3){
         imageRes = 1
-        random = (3..5).random()
+        random = (3..4).random()
     }
 
     Column(
@@ -75,7 +84,8 @@ fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResource
     ) {
         Button(
             onClick = {imageRes = imageRes + 1},
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(153, 23, 23))
         )
         {
             Image(
@@ -84,7 +94,7 @@ fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResource
             )
         }
         Text(
-            text = stringResource(stringResourceId)
+            text = stringResource(stringResource)
         )
     }
 }
