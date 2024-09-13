@@ -99,6 +99,7 @@ fun LemonApp(modifier: Modifier = Modifier, imageResourceId: Int, stringResource
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun LemonAppPreview() {
