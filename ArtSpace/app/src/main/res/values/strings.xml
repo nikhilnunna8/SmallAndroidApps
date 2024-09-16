@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ArtSpace</string>
+    <string name="capeTownTitle">Cape Town, South Africa</string>
+    <string name="capeTownDescription">From Adobe Stock Photos</string>
+    <string name="beijingTitle">Beijing, China</string>
+    <string name="beijingDescription">From iStock Photos</string>
+    <string name="chicagoTitle">Chicago, USA</string>
+    <string name="chicagoDescription">From WTTW Chicago</string>
+    <string name="amsterdamTitle">Amsterdam, Netherlands</string>
+    <string name="amsterdamDescription">From Adobe Stock Photos</string>
+    
+
 </resources>
