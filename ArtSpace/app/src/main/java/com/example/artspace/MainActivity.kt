@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.IntegerRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,36 +43,65 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+//sdbshdbshbd
 @Composable
 fun ArtSpace(modifier: Modifier = Modifier) {
+    var position by remember { mutableStateOf(0) }
+    var imageResource = when(position){
+        0 -> R.drawable.london
+        1 -> R.drawable.paris
+        2 -> R.drawable.amsterdam
+        3 -> R.drawable.chicago
+        4 -> R.drawable.newyork
+        5 -> R.drawable.beijing
+        else -> R.drawable.capetown
+    }
+    var titleResource = when(position){
+        0 -> R.string.londonTitle
+        1 -> R.string.parisTitle
+        2 -> R.string.amsterdamTitle
+        3 -> R.string.chicagoTitle
+        4 -> R.string.newyorkTitle
+        5 -> R.string.beijingTitle
+        else -> R.string.capeTownTitle
+    }
+    var descResource = when(position){
+        0 -> R.string.londonDescription
+        1 -> R.string.parisDescription
+        2 -> R.string.amsterdamDescription
+        3 -> R.string.chicagoDescription
+        4 -> R.string.newyorkDescription
+        5 -> R.string.beijingDescription
+        else -> R.string.capeTownDescription
+    }
     Column(modifier = modifier) {
         Image(
-            painter = painterResource(R.drawable.london),
+            painter = painterResource(imageResource),
             contentDescription = null
         )
         Row(){
             Column() {
-                Text(text = stringResource(R.string.app_name))
-                Text(text = stringResource(R.string.app_name))
+                Text(text = stringResource(titleResource))
+                Text(text = stringResource(descResource))
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row() {
-            ArtSpaceButtons()
+            ArtSpaceButtons(onChange1 = {position++}, onChange2 = {position--})
         }
     }
 }
 
 @Composable
-fun ArtSpaceButtons() {
-    Button(onClick = {/*TODO*/}
-    ) {
-        Text(text = stringResource(R.string.app_name))
+fun ArtSpaceButtons(
+    onChange1: () -> Unit,
+    onChange2: () -> Unit
+){
+    Button(onClick = onChange2) {
+        Text(text = stringResource(R.string.backward))
     }
-    Button(onClick = {/*TODO*/}
-    ) {
-        Text(text = stringResource(R.string.app_name))
+    Button(onClick = onChange1) {
+        Text(text = stringResource(R.string.forward))
     }
 }
 
